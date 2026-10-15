@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RewardFlow aligns flow-based text-to-image models with reward distributions for stronger preference alignment, better generalization, and more diverse generations.">
+  <meta name="theme-color" content="#f7f9fb">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RewardFlow: Learning to Align Flow Models with Reward Distributions">
+  <meta property="og:description" content="Stronger alignment. More diverse generations. A reward distribution matching framework for flow models.">
+  <meta property="og:image" content="https://reward-flow.github.io/assets/images/social-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://reward-flow.github.io/">
+  <link rel="canonical" href="https://reward-flow.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>RewardFlow · Learning to Align Flow Models with Reward Distributions</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="site-config.js" defer></script>
+  <script src="assets/data.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-flow" viewBox="0 0 32 32"><path d="M3 23C12 23 10 9 19 9h10M3 16c9 0 9 0 16 0h10M3 9c9 0 7 14 16 14h10" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><circle cx="24" cy="9" r="2.8" fill="currentColor"/><circle cx="20" cy="16" r="2.8" fill="currentColor"/><circle cx="26" cy="23" r="2.8" fill="currentColor"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-diagonal" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+    <symbol id="icon-file" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Zm0 0v6h5M8 13h8m-8 4h6"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="wordmark" href="#top" aria-label="RewardFlow home"><svg class="brand-mark"><use href="#icon-flow"/></svg>Reward<span>Flow</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false"><span></span><span></span></button>
+      <nav id="main-nav" aria-label="Main navigation">
+        <a href="#overview">Overview</a><a href="#comparisons">Comparisons</a><a href="#method">Method</a><a href="#results">Results</a>
+      </nav>
+      <a class="nav-paper" data-paper-link href="assets/paper/RewardFlow.pdf" target="_blank" rel="noopener">Read the paper <svg class="icon"><use href="#icon-diagonal"/></svg></a>
+    </div>
+    <div class="reading-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="paper-title">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span> REWARD DISTRIBUTION MATCHING</div>
+        <h1 id="paper-title">Reward<span>Flow</span></h1>
+        <p class="paper-subtitle">Learning to Align Flow Models<br class="desktop-break"> with Reward Distributions</p>
+        <div class="authors" aria-label="Paper authors">
+          <span>Qingyan Wei<sup>1</sup></span><span>Guangzhao Li<sup>1</sup></span><span>Xiaohong Liu<sup>1</sup></span><span>Xiaobing Tu<sup>2</sup></span><span>Jinkui Ren<sup>2</sup></span><span>Xiantao Zhang<sup>2</sup></span><span>Peiyuan Chen<sup>2</sup></span><span>Linfeng Zhang<sup>1,†</sup></span>
+        </div>
+        <div class="affiliations"><span><sup>1</sup> Shanghai Jiao Tong University</span><span><sup>2</sup> Alibaba Group</span></div>
+        <p class="author-note">† Corresponding author</p>
+        <div class="hero-actions">
+          <a class="button button-primary" data-paper-link href="assets/paper/RewardFlow.pdf" target="_blank" rel="noopener"><svg class="icon"><use href="#icon-file"/></svg> Paper <span class="button-detail">PDF</span></a>
+          <a class="button button-secondary" id="code-link" href="#resources"><svg class="icon"><use href="#icon-code"/></svg> Code <span class="button-detail">Coming soon</span></a>
+          <a class="button button-secondary" href="#citation"><span class="quote-icon" aria-hidden="true">❞</span> BibTeX</a>
+        </div>
+      </div>
+
+      <div class="hero-showcase gallery-grid container" aria-label="Selected RewardFlow generations">
+        <button class="gallery-item gallery-large" data-lightbox="assets/images/cottage.jpg" data-caption="Mountain cottage · Supplementary RewardFlow sample" aria-label="Enlarge mountain cottage"><img src="assets/images/cottage.jpg" width="681" height="680" alt="Painterly cottage in a mountain valley with a sunlit stream" fetchpriority="high"><span>Worlds to wander <svg class="icon"><use href="#icon-expand"/></svg></span></button>
+        <button class="gallery-item" data-lightbox="assets/images/knitted-turtle.jpg" data-caption="Knitted turtle · Supplementary RewardFlow sample" aria-label="Enlarge knitted turtle"><img src="assets/images/knitted-turtle.jpg" width="680" height="680" alt="Green and blue knitted turtle toy in warm sunlight" fetchpriority="high"><span>A softer kind of detail <svg class="icon"><use href="#icon-expand"/></svg></span></button>
+        <button class="gallery-item" data-lightbox="assets/images/oranges.jpg" data-caption="Blood oranges · Supplementary RewardFlow sample" aria-label="Enlarge blood oranges"><img src="assets/images/oranges.jpg" width="340" height="341" alt="Blood oranges with vivid red interiors on a rustic wooden surface" fetchpriority="high"><span>Color you can almost taste <svg class="icon"><use href="#icon-expand"/></svg></span></button>
+        <button class="gallery-item" data-lightbox="assets/images/castle.jpg" data-caption="Fantasy castle · Supplementary RewardFlow sample" aria-label="Enlarge fantasy castle"><img src="assets/images/castle.jpg" width="340" height="340" alt="A golden castle overlooking a river and misty mountain valley" fetchpriority="high"><span>Somewhere beyond the ordinary <svg class="icon"><use href="#icon-expand"/></svg></span></button>
+        <button class="gallery-item" data-lightbox="assets/images/rabbits.jpg" data-caption="Storybook rabbits · Supplementary RewardFlow sample" aria-label="Enlarge storybook rabbits"><img src="assets/images/rabbits.jpg" width="340" height="340" alt="Two storybook rabbits holding a strawberry in a flower garden"><span>Small characters, big stories <svg class="icon"><use href="#icon-expand"/></svg></span></button>
+        <button class="gallery-item gallery-wide" data-lightbox="assets/images/autumn.jpg" data-caption="Autumn waters · Supplementary RewardFlow sample" aria-label="Enlarge autumn waters"><img src="assets/images/autumn.jpg" width="680" height="680" alt="Golden morning light over an autumn wetland framed by trees"><span>A moment of quiet <svg class="icon"><use href="#icon-expand"/></svg></span></button>
+        <button class="gallery-item" data-lightbox="assets/images/tea.jpg" data-caption="Morning tea · Supplementary RewardFlow sample" aria-label="Enlarge morning tea"><img src="assets/images/tea.jpg" width="340" height="340" alt="A warm tea set and pastries on a wooden tray"><span>Everyday, reimagined <svg class="icon"><use href="#icon-expand"/></svg></span></button>
+        <button class="gallery-item" data-lightbox="assets/images/lemonade.jpg" data-caption="Citrus and mint · Supplementary RewardFlow sample" aria-label="Enlarge citrus and mint"><img src="assets/images/lemonade.jpg" width="340" height="340" alt="Iced lemonade with orange slices, lemon, and fresh mint"><span>Fresh perspectives <svg class="icon"><use href="#icon-expand"/></svg></span></button>
+      </div>
+      <div class="showcase-caption container"><span><span class="caption-dot"></span> Generated with RewardFlow</span><span>One framework. Many possibilities. <a href="#comparisons" aria-label="Explore image comparisons">Explore <span aria-hidden="true">↓</span></a></span></div>
+    </section>
+
+    <section id="overview" class="section overview-section">
+      <div class="container">
+        <div class="section-label">01 <span></span> THE IDEA</div>
+        <div class="overview-grid">
+          <div><h2>Better alignment.<br><span class="text-accent">Room for diversity.</span></h2><p class="large-copy">A single prompt has many good answers.<br>Its reward should reflect that.</p></div>
+          <div class="abstract"><h3>Abstract</h3><p>Post-training alignment is important for flow-based text-to-image generation, but existing GRPO-style methods usually optimize scalar rewards and tend to concentrate the policy on a few reward-favored samples. This limits diversity, weakens generalization to unseen preference metrics, and becomes unstable under multi-reward optimization.</p><p>We introduce <strong>RewardFlow</strong>, a reward distribution matching framework that aligns the flow policy with a reward-induced distribution over sampled denoising trajectories. Multiple high-quality generations can receive positive optimization signals. A <strong>warm-started, prompt-conditioned partition function</strong> calibrates rewards, while a <strong>step-wise KL constraint</strong> preserves the pretrained flow prior.</p><p>Experiments on <strong>SD3.5-M</strong> and <strong>FLUX.1-dev</strong>, under both single- and multi-reward training, show stronger preference alignment, better generalization, and more diverse generations.</p></div>
+        </div>
+        <div class="key-results">
+          <div class="key-result"><div class="metric-label">HUMAN PREFERENCE <span>↑</span></div><div class="metric-number">0.362<span class="metric-change">+11.0%</span></div><p>HPS-v2.1 · vs. 0.326 with Flow-GRPO</p></div>
+          <div class="key-result"><div class="metric-label">UNSEEN REWARD <span>↑</span></div><div class="metric-number">6.470<span class="metric-change">+3.9%</span></div><p>Aesthetic Score · vs. 6.226 with Flow-GRPO</p></div>
+          <div class="key-result"><div class="metric-label">PERCEPTUAL DIVERSITY <span>↑</span></div><div class="metric-number">0.196<span class="metric-change">+20.2%</span></div><p>DreamSim · vs. 0.163 with Flow-GRPO</p></div>
+        </div>
+        <p class="source-note">HPS-v2.1 and Aesthetic: SD3.5-M, preference multi-reward training. DreamSim: the paper’s diversity evaluation. Relative gains are measured against Flow-GRPO.</p>
+      </div>
+    </section>
+
+    <section id="comparisons" class="section comparison-section">
+      <div class="container">
+        <div class="section-label">02 <span></span> SEE THE DIFFERENCE</div>
+        <div class="section-heading"><div><h2>Same prompt.<br>More possibilities.</h2><p>Explore how RewardFlow preserves variation in composition, style, and appearance.</p></div><span class="subtle-label">SAMPLES FROM THE PAPER</span></div>
+        <div class="prompt-tabs" role="group" aria-label="Choose a comparison prompt">
+          <button class="active" type="button" data-prompt="pattern" aria-pressed="true">Illustrated pattern</button><button type="button" data-prompt="portrait" aria-pressed="false">Crochet portrait</button><button type="button" data-prompt="mountain" aria-pressed="false">Alpine lake</button><button type="button" data-prompt="fox" aria-pressed="false">Steampunk fox</button><button type="button" data-prompt="koala" aria-pressed="false">Koala plush</button><button type="button" data-prompt="cake" aria-pressed="false">Citrus cake</button>
+        </div>
+        <div class="comparison-stage" aria-live="polite" aria-atomic="false">
+          <div class="prompt-text"><span>PROMPT</span><p id="prompt-text">Coffee and Donuts Seamless Vector Pattern Coffee and Donuts Seamless Vector Pattern early 20th century stock illustrations.</p><span class="prompt-counter" id="prompt-counter">01 / 06</span></div>
+          <div class="comparison-row"><div class="row-label"><span class="method-dot baseline"></span><strong>Flow-GRPO</strong><span>Baseline</span></div><div class="sample-grid" id="flow-samples"></div></div>
+          <div class="comparison-row ours"><div class="row-label"><span class="method-dot reward"></span><strong>RewardFlow</strong><span>Ours</span></div><div class="sample-grid" id="reward-samples"></div></div>
+        </div>
+        <div class="figure-footer"><span>Each row shows three generations for the same prompt. Click any image to inspect.</span><a href="assets/figures/comparison.pdf" target="_blank" rel="noopener">Original comparison figure <svg class="icon"><use href="#icon-diagonal"/></svg></a></div>
+        <noscript><p>Enable JavaScript to switch prompts, or <a href="assets/figures/comparison.pdf">view the full comparison figure</a>.</p><img src="assets/figures/comparison.png" alt="Qualitative comparison of Flow-GRPO and RewardFlow across six prompts" class="full-width"></noscript>
+      </div>
+    </section>
+
+    <section id="method" class="section method-section">
+      <div class="container">
+        <div class="section-label">03 <span></span> HOW IT WORKS</div>
+        <div class="section-heading"><div><h2>From rewards to distributions.</h2><p>Learn where probability should go, while staying close to the pretrained flow prior.</p></div></div>
+        <figure class="method-figure"><button class="figure-zoom" data-lightbox="assets/figures/method.png" data-caption="RewardFlow method overview · original figure from the paper" aria-label="Enlarge the RewardFlow method diagram"><img src="assets/figures/method.png" width="2400" height="947" loading="lazy" alt="RewardFlow samples denoising trajectories and scores their outputs. Flow-GRPO concentrates updates on a narrow mode; RewardFlow distributes update signals across several preferred modes."><span class="zoom-label"><svg class="icon"><use href="#icon-expand"/></svg> Expand figure</span></button><figcaption>Scalar reward maximization concentrates updates. Reward distribution matching supports multiple preferred trajectories.</figcaption></figure>
+        <div class="method-steps">
+          <article><span class="step-number">01 / DISTRIBUTE</span><h3>Match reward distributions</h3><p>Turn trajectory rewards into positive probability weights, so more than one high-quality sample can contribute to learning.</p><div class="formula">q<sup>★</sup><sub>β</sub>(τ) ∝ π<sub>ref</sub>(τ) exp(βR(τ))</div></article>
+          <article><span class="step-number">02 / CALIBRATE</span><h3>Learn the normalization</h3><p>A prompt-conditioned partition head absorbs shared offsets. A warm start centers the residual before updating the flow policy.</p><div class="formula">z<sub>φ</sub>(c) = h<sub>φ</sub>(e(c))</div></article>
+          <article><span class="step-number">03 / PRESERVE</span><h3>Keep the flow prior</h3><p>An external step-wise KL constraint anchors denoising transitions to the frozen pretrained model for stable optimization.</p><div class="formula">ℒ = ℒ<sub>TB</sub> + λ<sub>KL</sub> ℒ<sub>KL</sub></div></article>
+        </div>
+        <div class="method-note"><svg class="brand-mark"><use href="#icon-flow"/></svg><p><strong>Same sampling process. Same reward evaluations.</strong> RewardFlow uses the same training budget as Flow-GRPO, with no additional denoising steps or reward calls.</p><a data-paper-link href="assets/paper/RewardFlow.pdf" target="_blank" rel="noopener" aria-label="Read the technical details in the paper"><svg class="icon"><use href="#icon-diagonal"/></svg></a></div>
+      </div>
+    </section>
+
+    <section id="results" class="section results-section">
+      <div class="container">
+        <div class="section-label">04 <span></span> THE EVIDENCE</div>
+        <div class="section-heading"><div><h2>Stronger across reward settings.</h2><p>Two flow backbones. Single and multiple rewards. Consistent improvements.</p></div></div>
+        <div class="results-controls"><div class="segmented-control" role="group" aria-label="Select a model backbone"><button type="button" class="active" data-backbone="sd35" aria-pressed="true">SD3.5-M</button><button type="button" data-backbone="flux" aria-pressed="false">FLUX.1-dev</button></div><label class="setting-control">Training rewards <select id="reward-setting"><option value="preference">HPS + PickScore + ImageReward</option><option value="heterogeneous">HPS + GenEval + OCR</option><option value="hps">HPS-v2.1 only</option><option value="geneval">GenEval only</option><option value="ocr">OCR only</option></select></label></div>
+        <div class="results-context"><span id="results-description">Preference multi-reward training · 1:1:1 weighting</span><span>All metrics ↑ <i></i> <span class="training-key"></span> Training reward</span></div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Benchmark results; scroll horizontally on small screens"><table id="benchmark-table"><caption class="sr-only" id="benchmark-caption">SD3.5-M preference multi-reward results</caption><thead><tr><th scope="col">Method</th><th scope="col" data-metric="hps">HPS-v2.1</th><th scope="col" data-metric="pick">PickScore</th><th scope="col" data-metric="ir">ImageReward</th><th scope="col" data-metric="gen">GenEval</th><th scope="col" data-metric="ocr">OCR</th><th scope="col" data-metric="aes">Aesthetic</th></tr></thead><tbody></tbody></table></div>
+        <p class="source-note" id="result-source">Source: preference multi-reward comparison in the paper. Bold values indicate the best result in each column.</p>
+        <p class="sr-only" id="results-announcement" role="status"></p>
+        <noscript><p>The interactive table requires JavaScript. <a href="assets/paper/RewardFlow.pdf">Read all benchmark tables in the paper.</a></p></noscript>
+
+        <div class="evidence-grid">
+          <article class="diversity-panel"><div class="panel-heading"><span class="mini-label">DIVERSITY</span><h3>A broader generation distribution.</h3><p>Greater perceptual variation with a lower FID.</p></div><div class="small-table-wrap"><table class="small-table"><thead><tr><th scope="col">Method</th><th scope="col">DreamSim ↑</th><th scope="col">FID ↓</th><th scope="col">BFID ↑</th></tr></thead><tbody><tr><th scope="row">Flow-GRPO</th><td>0.163</td><td>34.040</td><td>0.097</td></tr><tr><th scope="row">DiverseGRPO</th><td>0.185</td><td>29.820</td><td>0.165</td></tr><tr class="highlight-row"><th scope="row">RewardFlow</th><td><strong>0.196</strong></td><td><strong>22.718</strong></td><td><strong>0.385</strong></td></tr></tbody></table></div><p class="source-note">Reported diversity evaluation in the paper.</p></article>
+          <article class="study-panel"><div class="panel-heading"><span class="mini-label">HUMAN EVALUATION</span><h3>Preferred by people.</h3><p>Fraction of times selected as the best method.</p></div><div class="study-bars"><div class="study-row"><span>Prompt alignment</span><div class="study-track"><span style="width:76.8%">76.8%</span><i style="width:15.6%"></i><b style="width:7.6%"></b></div></div><div class="study-row"><span>Visual quality</span><div class="study-track"><span style="width:82.4%">82.4%</span><i style="width:12.2%"></i><b style="width:5.4%"></b></div></div><div class="study-row"><span>Diversity</span><div class="study-track"><span style="width:81.2%">81.2%</span><i style="width:11.6%"></i><b style="width:7.2%"></b></div></div><div class="study-row"><span>Overall preference</span><div class="study-track"><span style="width:86.8%">86.8%</span><i style="width:9.2%"></i><b style="width:4%"></b></div></div></div><div class="chart-legend"><span><i class="legend-ours"></i> RewardFlow</span><span><i class="legend-grpo"></i> Flow-GRPO</span><span><i class="legend-base"></i> SD3.5-M</span></div></article>
+        </div>
+        <details class="training-details"><summary>Experimental setup <span aria-hidden="true">+</span></summary><div><p>Both backbones are trained for 600 epochs on 8 NVIDIA A100 GPUs. The prompt batch size is 9 for SD3.5-M and 3 for FLUX.1-dev, with 24 trajectories per prompt. The reward coefficient is β = 1 and the step-wise KL weight is λ<sub>KL</sub> = 0.1.</p><p>Human-preference experiments use official HPDv2 prompts: 107K training prompts and 3,200 evaluation prompts, evenly divided into Animation, Concept-art, Painting, and Photo. GenEval and OCR use their task-specific datasets. All compared methods use the same training and evaluation splits for each task.</p></div></details>
+      </div>
+    </section>
+
+    <section id="resources" class="resource-section"><div class="container resource-inner"><div><svg class="brand-mark"><use href="#icon-flow"/></svg><h2>Explore RewardFlow.</h2><p>Read the full method, experiments, and supplementary results.</p></div><div class="resource-actions"><a class="button button-primary" data-paper-link href="assets/paper/RewardFlow.pdf" target="_blank" rel="noopener">Read the paper <svg class="icon"><use href="#icon-diagonal"/></svg></a><p id="code-status">Research code will be released on GitHub.</p></div></div></section>
+
+    <section id="citation" class="section citation-section"><div class="container citation-grid"><div><div class="section-label">05 <span></span> CITATION</div><h2>BibTeX</h2><p>If you find this work useful,<br>please consider citing it.</p></div><div class="citation-box"><div class="citation-header"><span>rewardflow.bib</span><button id="copy-citation" type="button"><svg class="icon"><use href="#icon-copy"/></svg> <span>Copy</span></button></div><pre id="bibtex">@misc{wei2026rewardflow,
+  title  = {RewardFlow: Learning to Align Flow Models
+            with Reward Distributions},
+  author = {Qingyan Wei and Guangzhao Li and Xiaohong Liu
+            and Xiaobing Tu and Jinkui Ren and Xiantao Zhang
+            and Peiyuan Chen and Linfeng Zhang},
+  year   = {2026},
+  note   = {Manuscript}
+}</pre><div class="citation-footer"><a href="assets/rewardflow.bib" download>Download .bib <span aria-hidden="true">↓</span></a><span class="copy-status" role="status" aria-live="polite"></span></div></div></div></section>
+  </main>
+
+  <footer><div class="container footer-inner"><a class="wordmark" href="#top"><svg class="brand-mark"><use href="#icon-flow"/></svg>Reward<span>Flow</span></a><p>Learning to align. Preserving possibility.</p><a class="back-top" href="#top">Back to top <span aria-hidden="true">↑</span></a></div><div class="container footer-bottom"><span>© 2026 RewardFlow authors. Research images from the paper.</span><span>Design inspired by <a href="https://layert2v.github.io/" target="_blank" rel="noopener">LayerT2V</a> and <a href="https://nvlabs.github.io/LongLive/LongLive2/" target="_blank" rel="noopener">LongLive 2.0</a>.</span></div></footer>
+
+  <dialog id="image-dialog" aria-label="Image viewer"><div class="lightbox-toolbar"><span id="lightbox-counter"></span><div><a id="lightbox-original" href="assets/figures/method.png" target="_blank" rel="noopener" aria-label="Open full image in a new tab"><svg class="icon"><use href="#icon-diagonal"/></svg></a><button class="lightbox-close" type="button" aria-label="Close image viewer"><svg class="icon"><use href="#icon-close"/></svg></button></div></div><button class="lightbox-prev" type="button" aria-label="Previous image">←</button><figure><img id="lightbox-image" alt=""><figcaption id="lightbox-caption"></figcaption></figure><button class="lightbox-next" type="button" aria-label="Next image">→</button></dialog>
+</body>
+</html>
