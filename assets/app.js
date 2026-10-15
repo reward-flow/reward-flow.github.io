@@ -33,13 +33,29 @@
   let currentImage = 0;
   let returnFocus = null;
 
+  viewer.addEventListener("load", () => {
+    const resolution = $("#lightbox-resolution");
+    if (!resolution) return;
+    resolution.textContent = activeImages[currentImage]?.dataset.kind === "svg"
+      ? "SVG artwork · original PDF available"
+      : `${viewer.naturalWidth} × ${viewer.naturalHeight} px · Original`;
+  });
+
   function showImage(index) {
     currentImage = (index + activeImages.length) % activeImages.length;
     const button = activeImages[currentImage];
+    const original = button.dataset.original || button.dataset.lightbox;
+    const resolution = $("#lightbox-resolution");
+    if (resolution) resolution.textContent = "";
     viewer.src = button.dataset.lightbox;
     viewer.alt = $("img", button)?.alt || button.dataset.caption || "Research figure";
     $("#lightbox-caption").textContent = button.dataset.caption || "";
-    $("#lightbox-original").href = button.dataset.lightbox;
+    $("#lightbox-original").href = original;
+    const download = $("#lightbox-download");
+    if (download) {
+      download.href = original;
+      download.download = original.split("/").pop();
+    }
     $("#lightbox-counter").textContent = activeImages.length > 1 ? `${String(currentImage + 1).padStart(2, "0")} / ${String(activeImages.length).padStart(2, "0")}` : "REWARDFLOW · RESEARCH FIGURE";
     $(".lightbox-prev").disabled = activeImages.length < 2;
     $(".lightbox-next").disabled = activeImages.length < 2;
@@ -86,7 +102,7 @@
         const button = document.createElement("button");
         button.className = "sample-button";
         button.type = "button";
-        button.dataset.lightbox = `assets/images/${key}-${method}-${index}.jpg`;
+        button.dataset.lightbox = `assets/images/originals/${key}-${method}-${index}.png`;
         button.dataset.caption = `${name} · ${prompt.name} · Sample ${index}. Prompt: ${prompt.text}`;
         button.setAttribute("aria-label", `Enlarge ${name} sample ${index}: ${prompt.name}`);
         const img = document.createElement("img");
@@ -95,6 +111,7 @@
         img.width = 512;
         img.height = 512;
         img.loading = "lazy";
+        img.decoding = "async";
         const label = document.createElement("span");
         label.className = "sample-index";
         label.textContent = `0${index}`;

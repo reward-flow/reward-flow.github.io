@@ -5,11 +5,12 @@ An English academic project page for **RewardFlow: Learning to Align Flow Models
 ## Contents
 
 - Paper title, authors, affiliations, and PDF download.
-- Six prompt comparisons, using the paper's original 512-pixel image samples.
+- Six prompt comparisons, using lossless 512-pixel PNG samples extracted from the supplied figure PDFs.
 - Original method figure with an accessible image viewer.
 - Results for SD3.5-M and FLUX.1-dev across five reward settings.
 - Diversity results and the user study, with eight supplementary generations in the opening showcase.
 - BibTeX copy and download, responsive navigation, and keyboard support.
+- Individual original-image downloads and a ZIP of all 44 displayed samples.
 
 ## Project links
 
@@ -53,9 +54,11 @@ An empty `codeUrl` displays **Coming soon** and links to the release-status sect
 The content comes from the supplied manuscript archive, dated 15 October 2026. It does not imply acceptance at ICLR or any other venue. The provisional citation uses `@misc`, year 2026, and `Manuscript`; update it in both `index.html` and `assets/rewardflow.bib` when publication metadata becomes available.
 
 - Authors and affiliations follow `iclr2027_conference.tex`. Its source includes a TODO to confirm **Peiyuan Chen's affiliation**; the page currently reproduces the stated Alibaba Group affiliation.
-- Comparison images are extracted from `Figure/view.pdf`, the full-resolution source of the qualitative samples. The downloadable figure is `Figure/view_new.pdf`.
-- Gallery images are extracted from `Figure/appendix_view_our.pdf`.
-- The method figure comes from `Figure/method_new.pdf`.
+- Comparison images are extracted losslessly from `Figure/view.pdf` as native 512 × 512 PNGs. The full-resolution original comparison PDF is also available to download.
+- Gallery images are copied from `Figure/appendix_view_our.pdf` as the original embedded JPEG data, without another JPEG encoding pass. Their native dimensions range from 340 to 681 pixels per side.
+- The method figure uses the higher-resolution original artwork `Figure/method.pdf`, displayed as SVG with an original PDF download. Vector drawing elements are retained; embedded bitmap components keep the source artwork's resolution.
+- Current images live in `assets/images/originals/`. Its manifest records source PDFs, dimensions, and SHA-256 checksums. Every exported sample was checked for pixel equality with the embedded source.
+- `assets/downloads/rewardflow-original-images.zip` contains the 44 displayed samples and their provenance manifest. The supplied archive did not contain higher-resolution upstream generation files, so these images are not upscaled. Older compressed files remain only for compatibility with previously cached pages.
 - `assets/data.js` transcribes `table/multi_reward.tex`, `table/multi_reward_geneval_ocr_hps.tex`, and `table/single_reward.tex`.
 - Diversity and user-study results come from `table/diversity.tex`.
 - Missing benchmark values are shown as an em dash, never as zero. Best-value highlighting includes ties and is calculated separately for each selected setting.
@@ -77,6 +80,8 @@ The user-study bars show the reported fractions selected as best, not pairwise w
 | `assets/paper/RewardFlow.pdf` | Compiled manuscript |
 | `assets/images/` | Original research image samples |
 | `assets/figures/` | Original diagrams and downloadable vector figures |
+| `assets/images/originals/manifest.json` | Native image dimensions, sources, and checksums |
+| `assets/downloads/rewardflow-original-images.zip` | All 44 displayed samples at their embedded source quality |
 
 ## Credits and rights
 
